@@ -39,9 +39,26 @@ export default function Home() {
   };
   */
 
+  /*
   // 抽出テキストに基づいた応答を生成（Halloween風の怖い演出）
   const generateResponse = (text) => {
     if (text.includes("シュレッダー") && text.includes("注意")) {
+      setResponse("⚠️ 警告！このシュレッダーはただの機械ではありません。近づきすぎないように…。一度何かを飲み込むと止まりません。命を守るため、指示に従い慎重に扱ってください。");
+    } else if (text.includes("扉を開け") && text.includes("平らに")) {
+      setResponse("扉を開けるときは細心の注意を払ってください。シュレッダーの内部には不気味なほど鋭い刃が潜んでいます。クズを平らにしなければ、その刃が目を覚まし…あなたに襲いかかるかもしれません…");
+    } else {
+      setResponse("不気味な静寂…。特定の指示が見つかりませんでしたが、シュレッダーはじっとこちらを見つめています…油断しないでください。");
+    }
+  };
+  */
+
+  // 抽出テキストに基づいた応答を生成（Halloween風の怖い演出）
+  const generateResponse = (text) => {
+    // スペースを無視して"シュレッダー"と"注意"が含まれるかチェック
+    const shredderRegex = /シュ\s*レ\s*ッ\s*ダー/;
+    const cautionRegex = /注意/;
+
+    if (shredderRegex.test(text) && cautionRegex.test(text)) {
       setResponse("⚠️ 警告！このシュレッダーはただの機械ではありません。近づきすぎないように…。一度何かを飲み込むと止まりません。命を守るため、指示に従い慎重に扱ってください。");
     } else if (text.includes("扉を開け") && text.includes("平らに")) {
       setResponse("扉を開けるときは細心の注意を払ってください。シュレッダーの内部には不気味なほど鋭い刃が潜んでいます。クズを平らにしなければ、その刃が目を覚まし…あなたに襲いかかるかもしれません…");
